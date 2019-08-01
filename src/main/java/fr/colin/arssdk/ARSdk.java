@@ -17,6 +17,8 @@ public class ARSdk {
 
     public final static OkHttpClient HTTP_CLIENT = new OkHttpClient();
 
+    public static final ARSdk DEFAULT_INSTANCE = new ARSdk("https://ars.nwa2coco.fr");
+
     public static final MediaType JSON = MediaType.parse("application/json");
     public final static Type VESSEL_TYPE = new TypeToken<ArrayList<Vessel>>() {
     }.getType();
@@ -47,12 +49,17 @@ public class ARSdk {
         return Boolean.parseBoolean(HTTP_CLIENT.newCall(r).execute().body().string());
     }
 
+    public boolean switchVessel(User user, String vesselid) throws IOException {
+        user.setVesselid(vesselid);
+        Request r = new Request.Builder().url(baseURL + "/switch_vessel").post(RequestBody.create(JSON, new Gson().toJson(user))).build();
+        return Boolean.parseBoolean(HTTP_CLIENT.newCall(r).execute().body().string());
+    }
+
 
     public ArrayList<Vessel> allVessels() throws IOException {
         Request r = new Request.Builder().url(baseURL + "/allvessels").get().build();
         String jsd = HTTP_CLIENT.newCall(r).execute().body().string();
         return new Gson().fromJson(jsd, VESSEL_TYPE);
     }
-
 
 }

@@ -22,6 +22,10 @@ public class User {
         return report;
     }
 
+    public void setVesselid(String vesselid) {
+        this.vesselid = vesselid;
+    }
+
     public String getVesselid() {
         return vesselid;
     }
