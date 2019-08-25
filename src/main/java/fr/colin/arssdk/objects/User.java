@@ -6,12 +6,14 @@ public class User {
     private String scc;
     private String vesselid;
     private String report;
+    private String uuid;
 
-    public User(String name, String scc, String vesselid, String report) {
+    public User(String name, String scc, String vesselid, String report, String uuid) {
         this.name = name;
         this.scc = scc;
         this.vesselid = vesselid;
         this.report = report;
+        this.uuid = uuid;
     }
 
     public String getName() {
