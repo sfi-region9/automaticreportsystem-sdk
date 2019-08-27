@@ -28,6 +28,10 @@ public class User {
         this.vesselid = vesselid;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
     public String getVesselid() {
         return vesselid;
     }
