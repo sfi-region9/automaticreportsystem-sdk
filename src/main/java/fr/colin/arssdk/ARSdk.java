@@ -55,6 +55,15 @@ public class ARSdk {
         return Boolean.parseBoolean(HTTP_CLIENT.newCall(r).execute().body().string());
     }
 
+    public User syncronizeUser(User user) throws IOException, UserNotFoundException {
+        Request r = new Request.Builder().url(baseURL + "/syncronize_user").post(RequestBody.create(JSON, new Gson().toJson(user))).build();
+        User sd = new Gson().fromJson(HTTP_CLIENT.newCall(r).execute().body().string(), User.class);
+        if(sd.getName().equalsIgnoreCase("invalidID")){
+            throw new UserNotFoundException();
+        }
+        return sd;
+    }
+
 
     public ArrayList<Vessel> allVessels() throws IOException {
         Request r = new Request.Builder().url(baseURL + "/allvessels").get().build();
