@@ -1,4 +1,4 @@
-package fr.colin.arssdk;
+package fr.charlotte.arssdk;
 
 public class UserNotFoundException extends Exception {
 }

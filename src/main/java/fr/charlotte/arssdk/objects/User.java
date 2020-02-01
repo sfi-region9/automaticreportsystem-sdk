@@ -1,17 +1,17 @@
-package fr.colin.arssdk.objects;
+package fr.charlotte.arssdk.objects;
 
 public class User {
 
     private String name;
     private String scc;
-    private String vesselid;
+    private String vesselID;
     private String report;
     private String uuid;
 
-    public User(String name, String scc, String vesselid, String report, String uuid) {
+    public User(String name, String scc, String vesselID, String report, String uuid) {
         this.name = name;
         this.scc = scc;
-        this.vesselid = vesselid;
+        this.vesselID = vesselID;
         this.report = report;
         this.uuid = uuid;
     }
@@ -24,16 +24,16 @@ public class User {
         return report;
     }
 
-    public void setVesselid(String vesselid) {
-        this.vesselid = vesselid;
+    public void setVesselID(String vesselID) {
+        this.vesselID = vesselID;
     }
 
     public String getUuid() {
         return uuid;
     }
 
-    public String getVesselid() {
-        return vesselid;
+    public String getVesselID() {
+        return vesselID;
     }
 
     public void setReport(String report) {
