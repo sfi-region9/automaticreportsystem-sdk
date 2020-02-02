@@ -1,4 +1,4 @@
-package fr.colin.arssdk.objects.auth;
+package fr.charlotte.arssdk.objects.auth;
 
 public class Register {
 

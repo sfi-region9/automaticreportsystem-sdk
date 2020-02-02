@@ -1,4 +1,4 @@
-package fr.colin.arssdk;
+package fr.charlotte.arssdk;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -6,12 +6,12 @@ import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
-import fr.colin.arssdk.objects.CheckVessel;
-import fr.colin.arssdk.objects.CheckVesselName;
-import fr.colin.arssdk.objects.User;
-import fr.colin.arssdk.objects.Vessel;
-import fr.colin.arssdk.objects.auth.Login;
-import fr.colin.arssdk.objects.auth.Register;
+import fr.charlotte.arssdk.objects.CheckVessel;
+import fr.charlotte.arssdk.objects.CheckVesselName;
+import fr.charlotte.arssdk.objects.User;
+import fr.charlotte.arssdk.objects.auth.Login;
+import fr.charlotte.arssdk.objects.auth.Register;
+import fr.charlotte.arssdk.objects.Vessel;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -72,7 +72,7 @@ public class ARSdk {
     }
 
     public boolean switchVessel(User user, String vesselid) throws IOException {
-        user.setVesselid(vesselid);
+        user.setVesselID(vesselid);
         Request r = new Request.Builder().url(baseURL + "/switch_vessel").post(RequestBody.create(JSON, new Gson().toJson(user))).build();
         return Boolean.parseBoolean(HTTP_CLIENT.newCall(r).execute().body().string());
     }
@@ -89,7 +89,7 @@ public class ARSdk {
     public String[] registerUser(String name, String username, String password, String vaisseau, String email, String scc) throws IOException {
         Register register = new Register(name, username, password, vaisseau, email, scc);
         OkHttpClient o = new OkHttpClient();
-        Request r = new Request.Builder().url("https://auth.nwa2coco.fr/register").post(RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(register))).build();
+        Request r = new Request.Builder().url(authURL + "/register").post(RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(register))).build();
 
         String lig = o.newCall(r).execute().body().string();
         if (lig.contains("Error while register, ")) {
@@ -102,7 +102,7 @@ public class ARSdk {
 
         Login login = new Login(username, password);
         OkHttpClient o = new OkHttpClient();
-        Request r = new Request.Builder().url("https://auth.nwa2coco.fr/login").post(RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(login))).build();
+        Request r = new Request.Builder().url(authURL + "/login").post(RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(login))).build();
         String lig = o.newCall(r).execute().body().string();
 
 
